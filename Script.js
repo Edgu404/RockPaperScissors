@@ -4,22 +4,14 @@ let playerScore = 0;
 let computerScore = 0;
 const buttons = document.querySelectorAll('button');
 
-/* Get the players choice */
-function getPlayerChoice(){
-    let playerChoice='';
-    buttons.forEach((button) => {
-        button.addEventListener("click", () => {playerChoice = button.id; console.log("This is the players choice:" +playerChoice)});
-    });
-    return playerChoice;
-};
+
 
 /* Randomly Decide The Computers Choice */
 function getComputerChoice(){
     let computerChoice = ["rock", "paper", "scissors"];
     return computerChoice[Math.floor(Math.random()*computerChoice.length)];
-    
 }
-console.log("this is the computers choice: " + getComputerChoice());
+
 
 /* Play One Round of RPS */
 function playRound(){
@@ -51,27 +43,13 @@ function playRound(){
         
     };
 
-/*Play 5 rounds of RPS */
-// function playGame(){
+/* player selects and initiates game */
+function getPlayerChoice(){
+    let playerChoice='';
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {playerChoice = button.id; playRound();} );
+        
+    });
     
-//     // for(let i=0; i<5; i++){
-//     //     console.log("Round: "+(i+1));
-//     //     playRound(); 
-//     //     console.log("The current scores are Player: "+playerScore +" Computer: "+computerScore);
-//     // }
-//     playRound(); 
-//         // console.log("The game has ended! The scores were Player:"+playerScore +" Computer: "+computerScore);
-//         if(playerScore>computerScore){
-//             return("Congratulations you win!");
-//         }
-//         else if (playerScore < computerScore){
-//             return("The computer wins! Better luck next time :D");
-//         }
-//         else if(playerScore == computerScore){
-//             return("The game was a tie!")
-//         }
-//         // return("Thanks for playing!");
-//     };
-
-
-playRound();
+    console.log("this is the computers choice: " + getComputerChoice());
+};
