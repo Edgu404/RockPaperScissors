@@ -1,32 +1,25 @@
 
-/* Constants */
+/* Constants and global variables*/
 let playerScore = 0;
 let computerScore = 0;
+const buttons = document.querySelectorAll('button');
 
-/* Prompts the user for their input */
+/* Get the players choice */
 function getPlayerChoice(){
-    let playerInput = prompt("Type your selection(Rock, Paper, or Scissors) below.");
-    console.log("You played: "+playerInput);
-    return playerInput;
-}
+    let playerChoice='';
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {playerChoice = button.id; console.log("This is the players choice:" +playerChoice)});
+    });
+    return playerChoice;
+};
+
 /* Randomly Decide The Computers Choice */
 function getComputerChoice(){
-    let computerSelection = Math.floor(Math.random()*3);
-    switch(computerSelection){
-        case 0: 
-            computerSelection = "rock";
-            break;
-        case 1: 
-            computerSelection = "paper";
-            break;
-        case 2: 
-            computerSelection = "scissors"; 
-            break;            
-    }
+    let computerChoice = ["rock", "paper", "scissors"];
+    return computerChoice[Math.floor(Math.random()*computerChoice.length)];
     
-    console.log("Computer plays: "+computerSelection);
-    return computerSelection;
 }
+console.log("this is the computers choice: " + getComputerChoice());
 
 /* Play One Round of RPS */
 function playRound(){
@@ -35,7 +28,7 @@ function playRound(){
     let computerSelection = getComputerChoice();
     if (humanSelection === computerSelection)
         {
-            console.log("It's a tie! No points are awarded.");
+            console.log("tie");
         }
     else if (
         ((humanSelection == "rock") && (computerSelection == "paper")) ||
@@ -43,9 +36,8 @@ function playRound(){
         ((humanSelection == "scissors") && (computerSelection == "rock"))
         )
         {
-            console.log("Oh, too bad! You lost this round. The computer earns 1 point!");
+            console.log("lose");
             computerScore++;
-
         }
     else if (
         ((humanSelection == "rock") && (computerSelection == "scissors")) ||
@@ -53,37 +45,33 @@ function playRound(){
         ((humanSelection == "scissors") && (computerSelection == "paper"))
         )
         {
-            console.log("Congratulations! You win this round and earn 1 point!");
+            console.log("win");
             playerScore++; 
         }
-    else {
-        console.log("Please try again and enter a valid option.");
-        playRound();
-    };
-    
-}
-/*Play 5 rounds of RPS */
-function playGame(){
-    
-    console.log("Hi, lets play a game of Rock, Paper, Scissors. We'll do best out of five :)")
-
-    for(let i=0; i<5; i++){
-        console.log("Round: "+(i+1));
-        playRound(); 
-        console.log("The current scores are Player: "+playerScore +" Computer: "+computerScore);
-    }
-        // console.log("The game has ended! The scores were Player:"+playerScore +" Computer: "+computerScore);
-        if(playerScore>computerScore){
-        console.log("Congratulations you win!");
-        }
-        else if (playerScore < computerScore){
-            console.log("The computer wins! Better luck next time :D");
-        }
-        else if(playerScore == computerScore){
-            console.log("The game was a tie!")
-        }
-        console.log("Thanks for playing!");
-    }
         
+    };
 
-playGame();
+/*Play 5 rounds of RPS */
+// function playGame(){
+    
+//     // for(let i=0; i<5; i++){
+//     //     console.log("Round: "+(i+1));
+//     //     playRound(); 
+//     //     console.log("The current scores are Player: "+playerScore +" Computer: "+computerScore);
+//     // }
+//     playRound(); 
+//         // console.log("The game has ended! The scores were Player:"+playerScore +" Computer: "+computerScore);
+//         if(playerScore>computerScore){
+//             return("Congratulations you win!");
+//         }
+//         else if (playerScore < computerScore){
+//             return("The computer wins! Better luck next time :D");
+//         }
+//         else if(playerScore == computerScore){
+//             return("The game was a tie!")
+//         }
+//         // return("Thanks for playing!");
+//     };
+
+
+playRound();
