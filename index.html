@@ -3,19 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock Paper Scissors</title>
+    <link rel ="stylesheet" href = "style.css">
 </head>
 <body>
     <h1>Rock, Paper, Scissors</h1>
+    <h2>Let the battle commence!</h2>
+    <div id="playfield">
+        <div class="player">
+            <h3> Player </h3>  
+            <div class="playerButtons">
+                <button id="playerRock"><img src="./Images/rockfist.png"></button>
+                <button id="playerPaper"><img src="./Images/paper.png"></button>
+                <button id="playerScissors"><img src="./Images/scissors.png"></button>
+            </div>
+        </div>
+        <div class="centerPlayfield">
+            <div class="report">
+                <p id = "score">Score</p>
+                <p id = "message">Message</p>
+                <p id = "roundUpdate">Round Update</p>
+            </div>
+        </div>
+        <div class="computer">
+            <h3> Computer </h3>
+            <div class="computerButtons">
+                <img src="./Images/rockfist.png">
+                <img src="./Images/paper.png">
+                <img src="./Images/scissors.png">
+            </div>
+        </div>
+        
+    </div>
     
-    <button id="rock">Rock</button>
-    <button id="paper">Paper</button>
-    <button id="scissors">Scissors</button>
-    
-    <div id="results"></div>
-
-
-    <!-- Sciripts go below here -->
+    <!-- Scripts go below here -->
     <script src="Script.js"></script>
 </body>
 </html>

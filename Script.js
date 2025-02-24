@@ -1,8 +1,15 @@
 
+
 /* Constants and global variables*/
 let playerScore = 0;
 let computerScore = 0;
 const buttons = document.querySelectorAll('button');
+
+let playerChoice='';
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {playerChoice= button.id; playRound();} );
+});
+    
 
 
 
@@ -12,15 +19,14 @@ function getComputerChoice(){
     return computerChoice[Math.floor(Math.random()*computerChoice.length)];
 }
 
-
 /* Play One Round of RPS */
 function playRound(){
     
-    let humanSelection = getPlayerChoice();
+    let humanSelection = playerChoice;
     let computerSelection = getComputerChoice();
     if (humanSelection === computerSelection)
         {
-            console.log("tie");
+            alert("It's a tie");
         }
     else if (
         ((humanSelection == "rock") && (computerSelection == "paper")) ||
@@ -28,7 +34,7 @@ function playRound(){
         ((humanSelection == "scissors") && (computerSelection == "rock"))
         )
         {
-            console.log("lose");
+            alert("You lose");
             computerScore++;
         }
     else if (
@@ -37,19 +43,9 @@ function playRound(){
         ((humanSelection == "scissors") && (computerSelection == "paper"))
         )
         {
-            console.log("win");
+            alert("You win");
             playerScore++; 
         }
-        
+    console.log("players score is: " + playerScore);
+    console.log("computers score is: " + computerScore);
     };
-
-/* player selects and initiates game */
-function getPlayerChoice(){
-    let playerChoice='';
-    buttons.forEach((button) => {
-        button.addEventListener("click", () => {playerChoice = button.id; playRound();} );
-        
-    });
-    
-    console.log("this is the computers choice: " + getComputerChoice());
-};
